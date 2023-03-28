@@ -1,0 +1,160 @@
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="pt-5">
+                    {% for main in main %}
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            <img classs="rounded" src="{{ app.image.url}}" width = "150" height = "100"/>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{main.pk}}">
+                                    <label class="form-check-label">{{main.name}}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{main.price}}</p>
+                            </div>
+                            <p>{{main.description}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>    
+
+                <div class="pt-5">
+                    {% for starters in starters %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ starters.image.url}}" width="150" height="150"\>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{starters.pk}}">
+                                    <label class="form-check-label">{{starters.name}}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{starters.price}}</p>
+                            </div>
+                            <p>{{starters.description}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+
+                    <div class="pt-5">
+                        {% for desserts in desserts %}
+                        <div class="row mt-4">
+                            <div class="col-md-2 col-sm-12">
+                                <img class="rounded" src="{{ desserts.image.url}}" width="150" height="150"\>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{desserts.pk}}">
+                                        <label class="form-check-label">{{desserts.name}}</label>
+                                    </div>
+                                    <p class="font-weight-bold pl-5">{{desserts.price}}</p>
+                                </div>
+                                <p>{{desserts.description}}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        {% endfor %}
+
+                        <div class="pt-5">
+                            {% for drinks in drinks %}
+                            <div class="row mt-4">
+                                <div class="col-md-2 col-sm-12">
+                                    <img class="rounded" src="{{ drinks.image.url}}" width="150" height="150"\>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="d-flex flex-row">
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" name="items[]" class="form-check-input" value="{{drinks.pk}}">
+                                            <label class="form-check-label">{{drinks.name}}</label>
+                                        </div>
+                                        <p class="font-weight-bold pl-5">{{drinks.price}}</p>
+                                    </div>
+                                    <p>{{drinks.description}}</p>
+                                </div>
+                            </div>
+                            <hr />
+                            {% endfor %}
+                        </div>
+                        <div class="form-group pt-3">
+                            <label for= "name">Full Name</label>
+                            <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <label for= "name">Email Address</label>
+                            <input required class="form-control" type="text" placeholder="example@example.com" name="email" />
+                        </div>
+
+                        <div class="form-group pt-3">
+                                    <label for= "name">Street Address</label>
+                                    <input required class="form-control" type="text" placeholder="1234" name="street"/>
+                                </div>
+                                
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                                     <label for= "name">City</label>
+                                     <input required class="form-control" type="text" placeholder="Takoradi" name="city" />
+                                </div>
+                             </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group pt-3">
+                                <label for= "name">State</label>
+                                <input required class="form-control" type="text" placeholder="CA" name="state" />
+                           </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group pt-3">
+                               <label for= "name">Zip Code</label>
+                               <input required class="form-control" type="text" placeholder="911" name="zip" />
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModalLong">
+                          Submit Order
+                        </button>
+                        <!--<button class="btn btn-yellow mt-5">Place Order!</button> -->
+
+                        {% comment %} <!-- Modal -->
+                        <div class="modal fade" id="submitModalLong" tabindex="-1" role="dialog" aria-labelledby="submitModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="submitModalLongTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                ...
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div> {% endcomment %}
+                    </form>
+                </div>
+            </div>
+{% endblock content%}
+
+
+                
+
+                       
+                        
+
+
